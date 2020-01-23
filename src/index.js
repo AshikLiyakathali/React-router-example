@@ -18,22 +18,17 @@ import store from "./redux/store";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 
 const Routing = (
-  <Router>
-    <div>
-      <Switch>
-        <Route exact path="/Home" component={Home} />
-        <PrivateRoute path="/Users" component={Users} />
-        <Route exact path="/" component={Login} />
-        <Route exact path="/Register" component={Register} />
-        <Route path="/Contact" component={Contact} />
-      </Switch>
-    </div>
-  </Router>
+  <Provider store={store}>
+    <Router>
+      <div>
+        <switch>
+          <Route exact path="/" component={Home} />
+          <PrivateRoute path="/Users" component={Users} />
+          <Route path="/Contact" component={Contact} />
+        </switch>
+      </div>
+    </Router>
+  </Provider>
 );
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Routing />
-  </Provider>,
-  document.getElementById("root")
-);
+ReactDOM.render(Routing, document.getElementById("root"));
